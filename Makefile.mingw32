@@ -1,0 +1,57 @@
+INC_CFLAGS = $(CFLAGS) $(shell pkg-config --cflags glib-2.0 gstreamer-avsynth-0.10)
+LIB_LDFLAGS = $(LDFLAGS) $(shell pkg-config --libs glib-2.0 gstreamer-avsynth-0.10)
+CC = g++
+SPEC_CFLAGS = $(INC_CFLAGS) -I. -DGCC__ -masm=intel -mmmx
+ifdef DEBUG
+DEBUG_CFLAGS = $(SPEC_CFLAGS) -O0 -g
+else
+DEBUG_CFLAGS = $(SPEC_CFLAGS)
+endif
+LOCAL_CFLAGS = $(DEBUG_CFLAGS) -fno-common -Wno-format -mms-bitfields
+SONAME = libgstavsynth-decomb.dll
+SOURCE_FILES = asmfuncsYUY2_intel.cpp asmfuncsYV12_intel.cpp AvisynthPluginInit.cpp Decimate.cpp DecimateYUY2.cpp FieldDeinterlace.cpp FieldDeinterlaceYUY2.cpp Telecide.cpp Utilities.cpp
+OBJECT_FILES = $(patsubst %.cpp,%.o,$(SOURCE_FILES))
+
+ifeq ($(OS),Windows_NT)
+	ifeq ($(MSYSTEM),MINGW32)
+		ENV = mingw-msys
+	else
+		ENV = mingw-cmd
+	endif
+else
+	ENV = gnu
+endif
+
+all: plugin
+
+clean:
+ifeq ($(ENV),mingw-cmd)
+	cmd /C del *.o *.dll
+else
+	rm *.o *.dll
+endif
+
+%.o: %.cpp
+	$(CC) $(LOCAL_CFLAGS) -DHAVE_CONFIG_H -o $@ -c $< 
+
+plugin: $(OBJECT_FILES)
+	$(CC) -shared $(LDFLAGS) -Wl,-soname,$(SONAME) -o $(SONAME) $(OBJECT_FILES)
+#	$(CC) $(LOCAL_CFLAGS) -DHAVE_CONFIG_H -cxx -o $(shell echo SOURCE_FILES | sed -e 's/.cpp/.o/') $(SOURCE_FILES)
+
+install: plugin
+ifndef PREFIX
+ifeq ($(ENV),mingw-cmd)
+	@echo Please use PREFIX=drive:\installation\directory to specify installation path
+else
+	@echo Please use PREFIX=/installation/directory to specify installation path
+endif
+else
+ifeq ($(ENV),mingw-cmd)
+	@echo Installing as $(PREFIX)\$(SONAME)
+	cmd /C mkdir $(PREFIX)
+	cmd /C copy /Y $(SONAME) $(PREFIX)\$(SONAME)
+else
+	@echo Installing as $(PREFIX)/$(SONAME)
+	install -D $(SONAME) $(PREFIX)/$(SONAME)
+endif
+endif

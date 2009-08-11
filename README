@@ -1,0 +1,20 @@
+This is a GstAVSynth port of the Decomb AviSynth filter.
+It is based on original Decomb v5.2.3.
+
+GstAVSynth is available here:
+http://github.com/LRN/gst-avsynth
+
+Original Decomb for AviSynth is available here:
+http://neuron2.net/decomb/decombnew.html
+
+To use Decomb (after you compile it) you'll need GStreamer itself and
+GstAVSynth GStreamer plugin.
+
+Decomb should (in theory) work on all platforms where GStreamer works. Decomb
+is tested and works on Windows.
+
+To build Decomb, use GNU Make with one of the makefiles:
+    make -f Makefile.something
+
+Decomb is distributed under any version of GNU General Public License
+(see Copying for details).
