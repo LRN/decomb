@@ -140,11 +140,11 @@ xloop:
 	__asm__ __volatile__
 	(
 
-	"	push	ebp\n"
+/*	"	push	ebp\n"
 	"	push	ebx\n"
 	"	push	esi\n"
 	"	push	edi\n"
-
+*/
 	"	mov		edx,[esp+4+16]\n"
 	"	mov		ecx,[esp+8+16]\n"
 	"	mov		ebx,[esp+12+16]\n"
@@ -223,12 +223,12 @@ xloop:
 	"	dec		ebp\n"
 	"	jnz		asm_deinterlaceYUY2_xloop\n"
 
-	"	pop		edi\n"
+/*	"	pop		edi\n"
 	"	pop		esi\n"
 	"	pop		ebx\n"
-	"	pop		ebp\n"
+	"	pop		ebp\n"*/
 	"	emms\n"
-	"	ret\n"
+/*	"	ret\n"*/
 
 	:
 	:	[Mask4] "rm" (Mask4),
@@ -364,11 +364,11 @@ xloop:
 	__asm__ __volatile__
 	(
 
-	"	push	ebp\n"
+/*	"	push	ebp\n"
 	"	push	ebx\n"
 	"	push	esi\n"
 	"	push	edi\n"
-
+*/
 	"	mov		edx,[esp+4+16]\n"
 	"	mov		ecx,[esp+8+16]\n"
 	"	mov		ebx,[esp+12+16]\n"
@@ -458,12 +458,12 @@ xloop:
 	"	dec		ebp\n"
 	"	jnz		asm_deinterlace_chromaYUY2_xloop\n"
 
-	"	pop		edi\n"
+/*	"	pop		edi\n"
 	"	pop		esi\n"
 	"	pop		ebx\n"
-	"	pop		ebp\n"
+	"	pop		ebp\n"*/
 	"	emms\n"
-	"	ret\n"
+/*	"	ret\n"*/
 
 	:
 	:	[Mask4] "rm" (Mask4),
@@ -557,11 +557,11 @@ skip:
 	__asm__ __volatile__
 	(
 
-	"	push	ebp\n"
+/*	"	push	ebp\n"
 	"	push	ebx\n"
 	"	push	edi\n"
 	"	push	esi\n"
-
+*/
 	"	mov		edx,[esp+4+16]\n"
 	"	mov		ecx,[esp+8+16]\n"
 	"	mov		ebx,[esp+12+16]\n"
@@ -605,12 +605,12 @@ skip:
 	"	dec		ebp\n"
 	"	jnz		blendYUY2_xloop\n"
 
-	"	pop		esi\n"
+/*	"	pop		esi\n"
 	"	pop		edi\n"
 	"	pop		ebx\n"
-	"	pop		ebp\n"
+	"	pop		ebp\n"*/
 	"	emms\n"
-	"	ret\n"
+/*	"	ret\n"*/
 
 	:
 	:	[Mask1] "rm" (Mask1),
@@ -695,11 +695,11 @@ skip:
 	__asm__ __volatile__
 	(
 
-	"	push	ebp\n"
+/*	"	push	ebp\n"
 	"	push	ebx\n"
 	"	push	edi\n"
 	"	push	esi\n"
-
+*/
 	"	mov		edx,[esp+4+16]\n"
 	"	mov		ecx,[esp+8+16]\n"
 	"	mov		ebx,[esp+12+16]\n"
@@ -737,12 +737,12 @@ skip:
 	"	dec		ebp\n"
 	"	jnz		interpolateYUY2_xloop\n"
 
-	"	pop		esi\n"
+/*	"	pop		esi\n"
 	"	pop		edi\n"
 	"	pop		ebx\n"
-	"	pop		ebp\n"
+	"	pop		ebp\n"*/
 	"	emms\n"
-	"	ret\n"
+/*	"	ret\n"*/
 
 	:
 	:	[Mask] "rm" (Mask)
