@@ -19,7 +19,6 @@
 
 #define VERSION "5.2.3"
 
-#define USE_MMX //asm parts are not ported completely
 #ifdef USE_MMX
 #define DEINTERLACE_MMX_BUILD
 #define INTERPOLATE_MMX_BUILD
