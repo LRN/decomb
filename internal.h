@@ -21,9 +21,6 @@
 
 
 #define WIN32_LEAN_AND_MEAN
-#include <objbase.h>
-#include <vfw.h>
-#include <windows.h>
 #include <stdio.h>
 #include <malloc.h>
 #include <math.h>
