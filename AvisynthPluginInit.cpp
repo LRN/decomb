@@ -13,7 +13,7 @@
 	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
 
-#include "telecide.h"
+#include "Telecide.h"
 
 AVSValue __cdecl Create_Telecide(AVSValue args, void* user_data, IScriptEnvironment* env);
 AVSValue __cdecl Create_FieldDeinterlace(AVSValue args, void* user_data, IScriptEnvironment* env);
